@@ -12,8 +12,12 @@ services:
     ports:
       - "9200:9200"
       - "9300:9300"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1g"
+        max-file: "1"
     environment:
-      ES_JAVA_OPTS: "-Xmx256m -Xms256m"
       ELASTIC_PASSWORD: changeme
     networks:
       - elk
@@ -30,8 +34,11 @@ services:
       - "5044:5044"
       - "5000:5000"
       - "9600:9600"
-    environment:
-      LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1g"
+        max-file: "1"
     networks:
       - elk
     depends_on:
@@ -46,6 +53,11 @@ services:
       - ./kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml:ro
     ports:
       - "5601:5601"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1g"
+        max-file: "1"
     networks:
       - elk
     depends_on:
