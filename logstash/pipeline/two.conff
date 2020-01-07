@@ -1,0 +1,38 @@
+input {
+  beats {
+    port => 5044
+  }
+  http {
+    host => "0.0.0.0"
+    port => 5000
+    type => "log-game"
+  }
+  http {
+    host => "0.0.0.0"
+    port => 9600
+    type => "log-alert" 
+  }
+}
+filter {
+  if [Type] == "log-game" {
+    json { source => "message" }
+    mutate {
+       remove_field => [ "message" ]
+       add_field => { "IndexType" => "log-game" }
+    } 
+  }
+#  if [Type] == "log-alert"{
+#    json { source => "message" }
+#    mudate {
+#      add_field => { "IndexType" => "log-alert" }
+#    }
+#  }
+}
+
+output {
+  elasticsearch {
+    hosts => "192.168.51.75:9200"
+    manage_template => false
+    index => "logstash-%{IndexType}-%{+YYYY.MM.dd}"
+  }
+}
