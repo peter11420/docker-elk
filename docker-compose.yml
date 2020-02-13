@@ -31,6 +31,7 @@ services:
       - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml
       - ./logstash/pipeline:/usr/share/logstash/pipeline
       - ./logstash/lib:/usr/share/logstash/java-lib
+      - ./logstash/bash:/usr/share/logstash/bash:ro
     ports:
       - "5044:5044"
       - "5000:5000"

@@ -4,8 +4,9 @@
 #
 server.name: kibana
 server.host: "0"
-elasticsearch.hosts: [ "http://elasticsearch:9200" ]
+elasticsearch.hosts: [ "http://192.168.51.75:9200", "http://192.168.51.76:9200", "http://192.168.51.77:9200" ]
 xpack.monitoring.ui.container.elasticsearch.enabled: false
+
 
 ## X-Pack security credentials
 #
