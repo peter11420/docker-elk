@@ -32,6 +32,7 @@ services:
       - ./logstash/pipeline:/usr/share/logstash/pipeline
       - ./logstash/lib:/usr/share/logstash/java-lib
       - ./logstash/bash:/usr/share/logstash/bash:ro
+      - /etc/localtime:/etc/localtime:ro  
     ports:
       - "5044:5044"
       - "5000:5000"
